@@ -1,0 +1,206 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --white: #ffffff;
+  --off-white: #e5e5e5;
+  --transparent-white-1: rgba(255, 255, 255, 0.25);
+  --transparent-white-2: rgba(0, 0, 0, 0.3);
+  --Bg-clr-blue: #628cf5;
+  --shadow: rgba(32, 3, 87, 0.2);
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s linear background-image;
+}
+
+.Container {
+  position: relative;
+  font-size: 16px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.Container .Wrapper {
+  position: relative;
+  width: 100%;
+  background: var(--transparent-white-2);
+  backdrop-filter: blur(1rem);
+  padding: 3em 1.8em;
+  border: 2px solid var(--transparent-white-1);
+  border-radius: 0.6em;
+  box-shadow: 0 1.8em 3.7em var(--shadow);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25em;
+}
+
+.Container .Wrapper .Search__Container {
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25em;
+  width: 100%;
+}
+
+.Container .Wrapper .Search__Container input,
+.Container .Wrapper .Search__Container button {
+  outline: none;
+  font-size: 1.2em;
+  border: none;
+}
+
+.Container .Wrapper .Search__Container input {
+  padding: 0.7em;
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 2px solid var(--transparent-white-1);
+  color: var(--white);
+  font-weight: 400;
+  transition: 0.3s ease-in;
+}
+
+.Container .Wrapper .Search__Container input::placeholder {
+  color: var(--off-white);
+}
+
+.Container .Wrapper .Search__Container input:focus {
+  border-color: var(--white);
+}
+
+.Container .Wrapper .Search__Container button {
+  color: var(--Bg-clr-blue);
+  background: var(--white);
+  border-radius: 0.3em;
+  width: 45px;
+  min-width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.Container .Wrapper .Result__Wrapper {
+  flex: 1;
+  width: 100%;
+}
+
+.Container .Wrapper .Result__Wrapper h2 {
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  margin: 1.25em 0;
+}
+
+.Container .Wrapper .weather,
+.Container .Wrapper .desc {
+  color: var(--off-white);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.9em;
+  font-weight: 500;
+  line-height: 2em;
+}
+
+.Container .Wrapper .weather {
+  margin-top: -0.7em;
+}
+
+.Container .Wrapper .Result__Wrapper img {
+  margin: 0.6rem auto;
+  width: auto;
+  max-width: 150px;
+  object-fit: cover;
+  object-position: center;
+  height: auto;
+  filter: drop-shadow(0 1.8em 3.7em var(--shadow));
+}
+
+.Container .Wrapper .Result__Wrapper h1 {
+  font-size: 4em;
+  margin: 1rem 0;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--white);
+}
+
+.Container .Wrapper .Temp__Container {
+  display: flex;
+  justify-content: center;
+}
+
+.Container .Wrapper .Temp__Container div {
+  padding: 0.3em 1em;
+}
+
+.Container .Wrapper .Temp__Container div:first-child {
+  border-right: 1px solid var(--transparent-white-1);
+}
+
+.Container .Wrapper .Temp__Container .Title {
+  font-weight: 600;
+  color: var(--white);
+}
+
+.Container .Wrapper .Temp__Container .Temp {
+  font-weight: 300;
+  color: var(--off-white);
+}
+
+.Container .Wrapper .Massage {
+  margin-top: 1.8em;
+  color: var(--white);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.Container footer {
+  margin-top: 1rem;
+  position: relative;
+  width: 100%;
+  background: var(--transparent-white-2);
+  backdrop-filter: blur(1rem);
+  padding: 1rem;
+  border: 2px solid var(--transparent-white-1);
+  border-radius: 0.6rem;
+  box-shadow: 0 1.8em 3.7em var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Container footer p {
+  color: var(--white);
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: 0.1em;
+}
+
+.Container footer a {
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: underline;
+  letter-spacing: 0;
+}
+
+@media screen and (max-width: 450px) {
+  .Container .Wrapper {
+    font-size: 14px;
+  }
+}
