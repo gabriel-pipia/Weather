@@ -1,3 +1,3 @@
 # Weather
 
-Preview [weather-itstep.netlify.app](https://weather-itstep.netlify.app)
+Preview [gp-weather.netlify.app](https://gp-weather.netlify.app)
