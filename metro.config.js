@@ -1,5 +1,4 @@
 const { getDefaultConfig } = require('expo/metro-config');
-const path = require('path');
 
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname);
@@ -18,7 +17,7 @@ config.resolver = {
   sourceExts: [...resolver.sourceExts, 'svg', 'mjs'],
   extraNodeModules: {
     ...resolver.extraNodeModules,
-    tslib: path.resolve(__dirname, 'node_modules/tslib'),
+    tslib: require.resolve('tslib'),
   },
   unstable_enablePackageExports: true
 };
