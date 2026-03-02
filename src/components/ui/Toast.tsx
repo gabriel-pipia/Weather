@@ -1,0 +1,179 @@
+import { BlurView } from 'expo-blur';
+import { AlertCircle, AlertTriangle, CheckCircle, Info } from 'lucide-react-native';
+import React, { useEffect } from 'react';
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, {
+    Easing,
+    Layout,
+    runOnJS,
+    SlideInUp,
+    SlideOutUp,
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring
+} from 'react-native-reanimated';
+import { useTheme } from '../../hooks/useTheme';
+
+import { ToastConfig } from '../../types/ui';
+
+interface ToastProps {
+    config: ToastConfig;
+    onDismiss: (id: string) => void;
+}
+
+export function Toast({ config, onDismiss }: ToastProps) {
+    const { colors, spacing, borderRadius } = useTheme();
+    
+    // Auto dismiss
+    useEffect(() => {
+        if (config.duration === 0) return; // 0 = infinite
+        const timer = setTimeout(() => {
+            onDismiss(config.id);
+        }, config.duration || 4000);
+        return () => clearTimeout(timer);
+    }, [config.id, config.duration, onDismiss]);
+
+    // Icons
+    const getIcon = () => {
+        switch (config.type) {
+            case 'success': return <CheckCircle size={24} color={colors.success} />;
+            case 'error': return <AlertCircle size={24} color={colors.error} />;
+            case 'warning': return <AlertTriangle size={24} color={colors.accent} />;
+            case 'info': return <Info size={24} color={colors.primary} />;
+        }
+    };
+
+    const getBorderColor = () => {
+        switch (config.type) {
+            case 'success': return colors.success;
+            case 'error': return colors.error;
+            case 'warning': return colors.accent;
+            case 'info': return colors.primary;
+        }
+    };
+
+    // Gestures
+    const translateY = useSharedValue(0);
+    const context = useSharedValue({ y: 0 });
+
+    const pan = Gesture.Pan()
+        .onStart(() => {
+            context.value = { y: translateY.value };
+        })
+        .onUpdate((event) => {
+            // Allow swiping up to dismiss
+            if (event.translationY < 0) {
+                translateY.value = event.translationY;
+            } else {
+                // Resistance when pulling down
+                translateY.value = event.translationY * 0.2;
+            }
+        })
+        .onEnd((event) => {
+            if (event.translationY < -20) {
+                runOnJS(onDismiss)(config.id);
+            } else {
+                translateY.value = withSpring(0);
+            }
+        });
+
+    const animatedStyle = useAnimatedStyle(() => ({
+        transform: [{ translateY: translateY.value }],
+    }));
+
+    return (
+        <GestureDetector gesture={pan}>
+            <Animated.View 
+                entering={SlideInUp.duration(500).easing(Easing.out(Easing.cubic))} 
+                exiting={SlideOutUp.duration(400).easing(Easing.in(Easing.cubic))}
+                layout={Layout.duration(500).easing(Easing.out(Easing.cubic))}
+                style={[
+                    styles.container, 
+                    { 
+                        backgroundColor: colors.surface,
+                        borderColor: getBorderColor(),
+                        borderRadius: borderRadius.md,
+                    },
+                    animatedStyle
+                ]}
+            >
+                {Platform.OS === 'ios' ? (
+                    <BlurView intensity={80} tint="light" style={StyleSheet.absoluteFill} />
+                ) : (
+                    <View style={[StyleSheet.absoluteFill, { backgroundColor: colors.surface, opacity: 0.95 }]} />
+                )}
+                
+                <Pressable 
+                    onPress={() => {
+                        if (config.onPress) {
+                            config.onPress();
+                            onDismiss(config.id);
+                        }
+                    }}
+                    style={[styles.contentContainer, { padding: spacing.md, gap: spacing.md }]}
+                >
+                    <View style={styles.iconContainer}>
+                        {getIcon()}
+                    </View>
+                    
+                    <View style={styles.textContainer}>
+                        <Text style={[styles.title, { color: colors.text }]}>{config.title}</Text>
+                        {config.message && (
+                            <Text style={[styles.message, { color: colors.textSecondary }]}>{config.message}</Text>
+                        )}
+                    </View>
+
+                    {config.action && (
+                         <Text 
+                            onPress={(e) => {
+                                e.stopPropagation();
+                                config.action?.onPress();
+                            }}
+                            style={[styles.action, { color: colors.primary, marginLeft: spacing.sm }]}
+                         >
+                            {config.action.label}
+                         </Text>
+                    )}
+                </Pressable>
+            </Animated.View>
+        </GestureDetector>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        alignSelf: 'center',
+        width: '90%',
+        maxWidth: 400,
+        overflow: 'hidden',
+        borderLeftWidth: 4,
+        zIndex: 9999,
+        minHeight: 60,
+        marginBottom: 8,
+    },
+    contentContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    iconContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    textContainer: {
+        flex: 1,
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        marginBottom: 2,
+    },
+    message: {
+        fontSize: 14,
+        opacity: 0.9,
+    },
+    action: {
+        fontWeight: 'bold',
+        fontSize: 14,
+    }
+});
