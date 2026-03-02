@@ -17,7 +17,7 @@ config.resolver = {
   sourceExts: [...resolver.sourceExts, 'svg', 'mjs'],
   extraNodeModules: {
     ...resolver.extraNodeModules,
-    tslib: require.resolve('tslib'),
+    tslib: require.resolve('tslib/tslib.js'),
   },
   unstable_enablePackageExports: true
 };
