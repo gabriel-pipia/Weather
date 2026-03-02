@@ -37,7 +37,7 @@ Atmosphere transcends standard weather apps by deeply integrating fluid animatio
 
 - **Framework:** [Expo](https://expo.dev) & [React Native](https://reactnative.dev/)
 - **Routing:** [Expo Router](https://docs.expo.dev/router/introduction/) (File-based navigation)
-- **Animations:** [Reanimated 3](https://docs.swmansion.com/react-native-reanimated/) & [Moti](https://moti.fyi/)
+- **Animations:** [Reanimated 3](https://docs.swmansion.com/react-native-reanimated/)
 - **Icons:** [Lucide React Native](https://lucide.dev/)
 - **Data Source:** [OpenWeatherMap REST API](https://openweathermap.org/api)
 
