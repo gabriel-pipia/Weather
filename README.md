@@ -6,7 +6,7 @@
   </p>
 
   <p>
-    <strong>🌟 <a href="https://gp-weather-v1.netlify.app">View Live Demo On Netlify</a> 🌟</strong>
+    <strong>🌟 <a href="https://gp-weather.netlify.app">View Live Demo</a> 🌟</strong>
   </p>
 
   <p>
