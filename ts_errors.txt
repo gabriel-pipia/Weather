@@ -1,3 +1,0 @@
-src/app/(tabs)/settings.tsx(35,11): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Object literal may only specify known properties, and 'color' does not exist in type 'Partial<unknown> & Attributes'.
