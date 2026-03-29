@@ -1,6 +1,8 @@
 import { Bell, Globe, Info, MapPin, Moon, RefreshCcw, Settings2, Shield, Smartphone, Sun, Thermometer, Wind } from 'lucide-react-native';
+import Constants from 'expo-constants';
 import React, { useState } from 'react';
-import { Linking, Platform, ScrollView, StyleSheet, Switch, TouchableOpacity, View } from 'react-native';
+import { Linking, Platform, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Switch } from '../../components/ui/Switch';
 import { LanguageSheet } from '../../components/settings/LanguageSheet';
 import { LocalWeatherSheet } from '../../components/settings/LocalWeatherSheet';
 import { SettingRow } from '../../components/settings/SettingRow';
@@ -87,8 +89,6 @@ export default function SettingsScreen() {
                 <Switch 
                   value={isFahrenheit} 
                   onValueChange={setIsFahrenheit} 
-                  trackColor={{ false: colors.border, true: colors.accent }}
-                  thumbColor="#FFF"
                 />
                 <ThemedText colorType={isFahrenheit ? 'text' : 'textSecondary'} weight={isFahrenheit ? 'bold' : 'regular'} style={{ marginLeft: 8 }}>°F</ThemedText>
               </View>
@@ -105,8 +105,6 @@ export default function SettingsScreen() {
                 <Switch 
                   value={isMph} 
                   onValueChange={setIsMph} 
-                  trackColor={{ false: colors.border, true: colors.accent }}
-                  thumbColor="#FFF"
                 />
                 <ThemedText colorType={isMph ? 'text' : 'textSecondary'} weight={isMph ? 'bold' : 'regular'} style={{ marginLeft: 8 }}>mph</ThemedText>
               </View>
@@ -127,8 +125,6 @@ export default function SettingsScreen() {
               <Switch 
                 value={autoRefresh} 
                 onValueChange={setAutoRefresh} 
-                trackColor={{ false: colors.border, true: colors.accent }}
-                thumbColor="#FFF"
               />
             }
           />
@@ -153,8 +149,6 @@ export default function SettingsScreen() {
               <Switch 
                 value={notifications} 
                 onValueChange={setNotifications} 
-                trackColor={{ false: colors.border, true: colors.accent }}
-                thumbColor="#FFF"
               />
             }
           />
@@ -199,7 +193,7 @@ export default function SettingsScreen() {
           <SettingRow
             icon={<Info />} 
             label={t('settings.version')} 
-            rightElement={<ThemedText colorType="textSecondary">1.0.0</ThemedText>}
+            rightElement={<ThemedText colorType="textSecondary">{Constants.expoConfig?.version ?? '1.0.0'}</ThemedText>}
             onPress={() => showToast({ title: t('toast.appUpToDateTitle'), message: t('toast.appUpToDateMsg'), type: 'info' })}
             hideBorder
           />

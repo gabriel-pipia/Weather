@@ -35,9 +35,9 @@ const palette = {
 };
 
 export const LightColors = {
-  primary: palette.blue,
+  primary: palette.orange,
   secondary: palette.grey600,
-  accent: palette.orange,
+  accent: palette.blue,
   background: palette.white,
   surface: palette.grey50,
   text: palette.grey900,
@@ -55,9 +55,9 @@ export const LightColors = {
 };
 
 export const DarkColors = {
-  primary: palette.blue,
+  primary: palette.orange,
   secondary: palette.grey400,
-  accent: palette.orange,
+  accent: palette.blue,
   background: '#0A0A0A',
   surface: '#1A1A1A',
   text: palette.white,

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Weather",
     "slug": "Weather",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "weather",
@@ -22,7 +22,7 @@
         "monochromeImage": "./src/assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.gfifia.Weather"
+      "package": "com.mr_pipia.weather"
     },
     "web": {
       "output": "static",

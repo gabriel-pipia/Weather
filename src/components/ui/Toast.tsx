@@ -23,7 +23,7 @@ interface ToastProps {
 }
 
 export function Toast({ config, onDismiss }: ToastProps) {
-    const { colors, spacing, borderRadius } = useTheme();
+    const { colors, spacing, borderRadius, layout } = useTheme();
     
     // Auto dismiss
     useEffect(() => {
@@ -94,6 +94,7 @@ export function Toast({ config, onDismiss }: ToastProps) {
                         backgroundColor: colors.surface,
                         borderColor: getBorderColor(),
                         borderRadius: borderRadius.md,
+                        maxWidth: layout.containerMaxWidth,
                     },
                     animatedStyle
                 ]}
@@ -145,7 +146,6 @@ const styles = StyleSheet.create({
     container: {
         alignSelf: 'center',
         width: '90%',
-        maxWidth: 400,
         overflow: 'hidden',
         borderLeftWidth: 4,
         zIndex: 9999,

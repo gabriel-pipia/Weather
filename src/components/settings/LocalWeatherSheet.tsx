@@ -1,8 +1,9 @@
 import React from 'react';
-import { Pressable, StyleSheet, Switch, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useTheme } from '../../hooks/useTheme';
 import { BottomSheet } from '../ui/BottomSheet';
+import { Switch } from '../ui/Switch';
 import { ThemedText } from '../ui/Text';
 
 interface LocalWeatherSheetProps {
@@ -36,8 +37,6 @@ export function LocalWeatherSheet({ visible, onClose, value, onValueChange }: Lo
             <Switch 
               value={value} 
               onValueChange={onValueChange} 
-              trackColor={{ false: colors.border, true: colors.accent }}
-              thumbColor="#FFF"
             />
           </View>
         </Pressable>
