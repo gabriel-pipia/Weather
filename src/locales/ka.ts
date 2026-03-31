@@ -50,7 +50,10 @@ export default {
     findingPosition: "მიმდინარე პოზიციის ძიება...",
     locationError: "ლოკაციის შეცდომა",
     fetchError: "ლოკაციის დადგენა ვერ მოხერხდა.",
-    savedLocations: "შენახული ლოკაციები"
+    savedLocations: "შენახული ლოკაციები",
+    noSavedLocations: "შენახული ლოკაციები ჯერ არ არის. მოძებნეთ ქალაქი და დაამატეთ!",
+    deleteLocation: "წაშალე ლოკაცია",
+    deleteLocationDesc: "დარწმუნებული ხართ, რომ გსურთ შენახული ლოკაციის წაშლა?",
   },
   weather: {
     now: "ახლა",
@@ -102,6 +105,7 @@ export default {
     topLocations: "ტოპ ლოკაციები",
     noResults: "ვერ მოიძებნა",
     searchingFor: "ვეძებთ",
+    goToSearch: "გადადით ძიებაში"
   },
   cities: {
     london: "ლონდონი",
@@ -119,6 +123,8 @@ export default {
     celsius: "ცელსიუსი",
     mph: "მილ/სთ",
     kmh: "კმ/სთ",
+    delete: "წაშლა",
+    cancel: "გაუქმება",
   },
   notFound: {
     title: "უი!",

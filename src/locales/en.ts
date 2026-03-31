@@ -51,6 +51,9 @@ export default {
     locationError: "Location Error",
     fetchError: "Could not fetch your location.",
     savedLocations: "Saved Locations",
+    noSavedLocations: "No saved locations yet. Search for a city to add one!",
+    deleteLocation: "Delete Location",
+    deleteLocationDesc: "Are you sure you want to delete saved location?",
   },
   weather: {
     now: "Now",
@@ -102,6 +105,7 @@ export default {
     topLocations: "Top Locations",
     noResults: "No results found for",
     searchingFor: "Searching for",
+    goToSearch: "Go to Search"
   },
   cities: {
     london: "London",
@@ -119,6 +123,8 @@ export default {
     celsius: "Celsius",
     mph: "mph",
     kmh: "km/h",
+    delete: "Delete",
+    cancel: "Cancel",
   },
   notFound: {
     title: "Oops!",

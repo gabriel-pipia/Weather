@@ -1,9 +1,10 @@
 import { useLanguage } from '@/hooks/useLanguage';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useLocations } from '../../hooks/useLocations';
 import { LocationCard } from '../search/LocationCard';
-import { BottomSheet, CustomModal, ThemedText, ThemedView } from '../ui';
+import { BottomSheet, Button, CustomModal, ThemedText, ThemedView } from '../ui';
 
 interface LocationsSheetProps {
   visible: boolean;
@@ -17,6 +18,7 @@ export function LocationsSheet({ visible, onClose, onSelect, activeCity }: Locat
   const [deleteCandidate, setDeleteCandidate] = useState<any>(null);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const { t } = useLanguage();
+  const router = useRouter();
 
   const handleLongPress = (loc: any) => {
     setDeleteCandidate(loc);
@@ -53,21 +55,30 @@ export function LocationsSheet({ visible, onClose, onSelect, activeCity }: Locat
           );
         })}
         {locations.length === 0 && (
+          <ThemedView style={{ gap: 16, paddingBottom: 16 }}>
            <ThemedText colorType="textSecondary" align="center" style={{ marginTop: 20 }}>
-             No saved locations yet. Search for a city to add one!
-           </ThemedText>
+             {t('home.noSavedLocations')}
+          </ThemedText>
+            <Button 
+              title={t('search.goToSearch')} 
+              onPress={() => {
+                router.push('/search')
+                onClose()
+              }}
+            />
+          </ThemedView>
         )}
       </ThemedView>
 
       <CustomModal
         visible={deleteModalVisible}
-        title="Delete Location"
-        description={`Are you sure you want to delete ${deleteCandidate?.name} from your saved locations?`}
+        title={t('home.deleteLocation')}
+        description={t('home.deleteLocationDesc')}
         onClose={() => setDeleteModalVisible(false)}
         actions={[
-          { text: 'Cancel', variant: 'secondary', onPress: () => setDeleteModalVisible(false) },
+          { text: t('common.cancel'), variant: 'secondary', onPress: () => setDeleteModalVisible(false) },
           { 
-            text: 'Delete', 
+            text: t('common.delete'), 
             variant: 'danger', 
             onPress: handleDeleteParams
           }
