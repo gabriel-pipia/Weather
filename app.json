@@ -2,14 +2,14 @@
   "expo": {
     "name": "Weather",
     "slug": "Weather",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "weather",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.gfifia.Weather",
+      "bundleIdentifier": "com.gabrielpipia.weather",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -22,7 +22,8 @@
         "monochromeImage": "./src/assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.mr_pipia.weather"
+      "package": "com.gabrielpipia.weather",
+      "versionCode": 1
     },
     "web": {
       "output": "static",

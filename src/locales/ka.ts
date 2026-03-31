@@ -50,6 +50,7 @@ export default {
     findingPosition: "მიმდინარე პოზიციის ძიება...",
     locationError: "ლოკაციის შეცდომა",
     fetchError: "ლოკაციის დადგენა ვერ მოხერხდა.",
+    savedLocations: "შენახული ლოკაციები"
   },
   weather: {
     now: "ახლა",

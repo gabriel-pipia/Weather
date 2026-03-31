@@ -1,3 +1,4 @@
+import { useLanguage } from '@/hooks/useLanguage';
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { useLocations } from '../../hooks/useLocations';
@@ -15,6 +16,7 @@ export function LocationsSheet({ visible, onClose, onSelect, activeCity }: Locat
   const { locations, removeLocation } = useLocations();
   const [deleteCandidate, setDeleteCandidate] = useState<any>(null);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const { t } = useLanguage();
 
   const handleLongPress = (loc: any) => {
     setDeleteCandidate(loc);
@@ -35,7 +37,7 @@ export function LocationsSheet({ visible, onClose, onSelect, activeCity }: Locat
   };
 
   return (
-    <BottomSheet visible={visible} onClose={onClose} title="Saved Locations" scrollable>
+    <BottomSheet visible={visible} onClose={onClose} title={t('home.savedLocations')} scrollable>
       <ThemedView maxWidth={true} style={styles.container}>
         {locations.map((loc, index) => {
           const isCurrentlyActive = loc.name.toLowerCase() === activeCity?.toLowerCase();

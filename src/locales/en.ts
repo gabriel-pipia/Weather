@@ -50,6 +50,7 @@ export default {
     findingPosition: "Finding your current position...",
     locationError: "Location Error",
     fetchError: "Could not fetch your location.",
+    savedLocations: "Saved Locations",
   },
   weather: {
     now: "Now",
