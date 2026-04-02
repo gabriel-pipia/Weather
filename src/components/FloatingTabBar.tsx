@@ -22,25 +22,17 @@ function AnimatedTabItem({
   getIcon: () => React.ReactNode;
   getLabel: () => string;
 }) {
-  const bgOpacity = useSharedValue(isFocused ? 1 : 0);
   const iconTranslateY = useSharedValue(isFocused ? -8 : 0);
   const labelOpacity = useSharedValue(isFocused ? 1 : 0);
   const labelTranslateY = useSharedValue(isFocused ? 0 : 10);
   const labelScale = useSharedValue(isFocused ? 1 : 0.8);
 
   useEffect(() => {
-    bgOpacity.value = withTiming(isFocused ? 1 : 0, { duration: 300 });
     iconTranslateY.value = withTiming(isFocused ? -8 : 0, { duration: 300 });
     labelOpacity.value = withTiming(isFocused ? 1 : 0, { duration: 300 });
     labelTranslateY.value = withTiming(isFocused ? 0 : 10, { duration: 300 });
     labelScale.value = withTiming(isFocused ? 1 : 0.8, { duration: 300 });
   }, [isFocused]);
-
-  const containerStyle = useAnimatedStyle(() => ({
-    backgroundColor: isDark
-      ? `rgba(255,255,255,${0.15 * bgOpacity.value})`
-      : `rgba(0,0,0,${0.08 * bgOpacity.value})`,
-  }));
 
   const iconStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: iconTranslateY.value }],
@@ -65,7 +57,9 @@ function AnimatedTabItem({
       style={styles.tabItem}
       activeOpacity={1}
     >
-      <Animated.View style={[styles.iconContainer, containerStyle]}>
+      <Animated.View style={[styles.iconContainer, {
+        backgroundColor: isFocused ? colors.surface : colors.background
+      }]}>
         <Animated.View style={iconStyle}>
           {getIcon()}
         </Animated.View>
@@ -92,13 +86,11 @@ export function FloatingTabBar({ state, descriptors, navigation }: BottomTabBarP
   return (
     <ThemedView style={[styles.container, { paddingBottom: insets.bottom + 10 }]} themed={false}>
       <ThemedView 
-        blur 
-        intensity={80} 
-        tint={isDark ? 'dark' : 'light'}
         style={[styles.tabBar, { 
             borderColor: colors.border,
             width: layout.containerWidth,
-            maxWidth: layout.containerMaxWidth
+            maxWidth: layout.containerMaxWidth,
+            backgroundColor: colors.background
           }]}
       >
         {state.routes.map((route, index) => {

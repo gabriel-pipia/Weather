@@ -39,22 +39,35 @@ export default function SettingsScreen() {
         style={[
           styles.themeButton,
           { 
-            backgroundColor: colors.surface,
+            backgroundColor: isActive ? colors.accent : colors.surface,
             borderColor: isActive ? colors.accent : colors.border,
+            borderBottomWidth: isActive ? 1 : 3,
+            transform: [{ translateY: isActive ? 2 : 0 }]
           }
         ]}
         onPress={() => setMode(themeMode)}
         activeOpacity={0.8}
       >
-        {React.cloneElement(icon as React.ReactElement<{ color: string }>, {
-          color: isActive ? colors.text : (colors.textSecondary as string)
-        })}
+        {isActive && (
+          <View style={styles.activeIndicator}>
+            <View style={[styles.activeDot, { backgroundColor: colors.accent }]} />
+          </View>
+        )}
+        <View style={[
+          styles.themeIconContainer,
+          { backgroundColor: isActive ? 'rgba(255,255,255,0.2)' : 'transparent' }
+        ]}>
+          {React.cloneElement(icon as React.ReactElement<{ color: string, size: number }>, {
+            color: isActive ? '#fff' : (colors.textSecondary as string),
+            size: 28
+          })}
+        </View>
         <ThemedText 
           style={{ 
-            color: isActive ? colors.text : colors.textSecondary,
-            marginTop: 8,
+            color: isActive ? '#fff' : colors.textSecondary,
+            marginTop: 12,
             fontSize: 14,
-            fontWeight: isActive ? '600' : '500'
+            fontWeight: isActive ? '700' : '600'
           }}
         >
           {label}
@@ -253,6 +266,36 @@ const styles = StyleSheet.create({
     borderBottomWidth: 3,
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
+  },
+  themeIconContainer: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  activeIndicator: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  activeDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#000', // or accent color
   },
   card: {
     borderRadius: 32,
