@@ -2,7 +2,7 @@
   "expo": {
     "name": "Weather",
     "slug": "Weather",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "weather",
@@ -23,7 +23,7 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.gabrielpipia.weather",
-      "versionCode": 10
+      "versionCode": 11
     },
     "web": {
       "output": "static",
@@ -56,6 +56,12 @@
       "eas": {
         "projectId": "465d49d9-673c-4067-895b-f656916a88ae"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/465d49d9-673c-4067-895b-f656916a88ae"
     }
   }
 }
