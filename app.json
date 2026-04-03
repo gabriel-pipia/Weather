@@ -23,7 +23,7 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.gabrielpipia.weather",
-      "versionCode": 2
+      "versionCode": 7
     },
     "web": {
       "output": "static",
