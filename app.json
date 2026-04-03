@@ -2,7 +2,7 @@
   "expo": {
     "name": "Weather",
     "slug": "Weather",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "weather",
@@ -23,7 +23,7 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.gabrielpipia.weather",
-      "versionCode": 7
+      "versionCode": 10
     },
     "web": {
       "output": "static",
